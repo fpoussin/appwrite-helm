@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  appwrite:
+  - apiVersion: v2
+    appVersion: 1.2.1
+    created: "2023-03-26T13:25:42.160026835+02:00"
+    dependencies:
+    - name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.5.5
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.9.0
+    - condition: appwrite.usageStats.enabled
+      name: telegraf
+      repository: https://helm.influxdata.com/
+      version: 1.8.26
+    description: Appwrite Helm chart
+    digest: e2d815260e05552f58ef1468c510432bc89a54c60ea46c70363fece9cd38eff5
+    name: appwrite
+    type: application
+    urls:
+    - appwrite-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-03-26T13:25:42.146725317+02:00"
