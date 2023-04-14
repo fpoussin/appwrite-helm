@@ -33,12 +33,27 @@ spec:
         {{- with .Values.appwrite.image.pullPolicy }}
         imagePullPolicy: {{ . }}
         {{- end }}
+        env:
+        {{- if .Values.mariadb.auth.existingSecret }}
+          - name: _APP_DB_PASS
+            valueFrom:
+            secretKeyRef:
+              name: {{ .Values.mariadb.auth.existingSecret }}
+              key: mariadb-password
+          - name: _APP_DB_ROOT_PASS
+            valueFrom:
+            secretKeyRef:
+              name: {{ .Values.mariadb.auth.existingSecret }}
+              key: mariadb-root-password
+        {{- end }}
         envFrom:
         - configMapRef:
             name: {{ include "appwrite.fullname" $ }}-env
         - secretRef:
             name: {{ include "appwrite.fullname" $ }}-env
+        {{- if not .Values.mariadb.auth.existingSecret }}
         - secretRef:
             name: {{ include "appwrite.fullname" $ }}-db-env
+        {{- end }}
         - secretRef:
             name: {{ include "appwrite.fullname" $ }}-redis-env
