@@ -183,6 +183,12 @@ telegraf:
 
 # -- See https://artifacthub.io/packages/helm/bitnami/redis
 redis:
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/redis
+    tag: 7.0.10-debian-11-r0
+    digest: ""
+
   architecture: standalone
   auth:
     enabled: false
@@ -206,6 +212,11 @@ redis:
 # -- See https://artifacthub.io/packages/helm/bitnami/mariadb
 mariadb:
   # initdbScriptsConfigMap: appwrite-db-seed
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mariadb
+    tag: 10.6.12-debian-11-r13
+    digest: ""
 
   auth:
     # -- MariaDB root password
@@ -222,6 +233,12 @@ mariadb:
 
   volumePermissions:
     enabled: true
+    image:
+      registry: docker.io
+      repository: kubegems/bitnami-shell
+      tag: 12-debian-12-r24
+      digest: ""
+      pullPolicy: IfNotPresent
 
   primary:
     persistence:
